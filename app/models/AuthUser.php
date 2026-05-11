@@ -56,7 +56,7 @@ class AuthUser extends User
     public static function logout(): void
     {
         // TODO: セッションから認証ユーザ情報を削除: unset() で APP_KEY, auth_user
-
+        unset($_SESSION[APP_KEY]['auth_user']);
         // ログアウト処理後のリダイレクト先を指定
         Request::redirect('login/');
     }
