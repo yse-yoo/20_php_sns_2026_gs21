@@ -46,22 +46,34 @@ function deleteTweet(target) {
 
 // ハッシュタグ
 document.addEventListener("DOMContentLoaded", function () {
-    // ハッシュタグリンク化
+
     document.querySelectorAll(".tweet-message").forEach(el => {
+
         const text = el.innerHTML;
-        // ハッシュタグ検出（日本語 + アルファベット + 数字 + _ に対応）
-        const linked = text.replace(/#\s*([一-龯ぁ-んァ-ンー\w]+)/gu, function (match, tag) {
-            const url = `home/search.php?keyword=%23${encodeURIComponent(tag)}`;
-            return `<a href="${url}" class="text-blue-500 hover:underline">${match}</a>`;
-        });
+
+        // # japan → ハッシュタグ化
+        const linked = text.replace(
+            /#\s*([一-龯ぁ-んァ-ンーA-Za-z0-9_]+)/gu,
+            (match, tag) => {
+                return `<a href="home/search.php?keyword=%23${encodeURIComponent(tag)}"
+                            class="text-blue-500 hover:underline">${match}</a>`;
+            }
+        );
+
         el.innerHTML = linked;
 
-        // 本文クリックで投稿詳細へ（ハッシュタグクリックは除外）
+        // 本文クリックで詳細へ
         el.addEventListener("click", function (e) {
-            if (e.target.tagName.toLowerCase() !== 'a') {
-                const tweetId = el.dataset.id;
-                window.location.href = `home/detail.php?id=${tweetId}`;
+
+            // ハッシュタグクリック時は除外
+            if (e.target.closest("a")) {
+                return;
             }
+
+            const tweetId = el.dataset.id;
+            window.location.href = `home/detail.php?id=${tweetId}`;
         });
+
     });
+
 });
