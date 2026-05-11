@@ -22,7 +22,9 @@ if (!isset($auth_user)) return;
             <div class="tweet-message mt-1 text-slate-800 text-sm leading-relaxed" data-id="<?= (int) $tweet['id'] ?>">
                 <!-- TODO: メッセージリンク: home/detail.php?id= でGETパラメータ -->
                 <!-- TODO: メッセージ(message)を改行つきで表示 -->
-                <?= h(nl2br($tweet['message'])) ?>
+                <a href="home/detail.php?id=<?= (int) $tweet['id'] ?>" class="cursor-pointer">
+                    <?= nl2br(h($tweet['message'])) ?>
+                </a>
             </div>
 
             <?php if (!empty($tweet['image_path'])) : ?>
