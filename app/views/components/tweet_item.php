@@ -10,23 +10,25 @@ if (!isset($auth_user)) return;
         <div class="flex-1 min-w-0">
             <div class="flex items-baseline gap-1 flex-wrap">
                 <a href="user/?id=<?= (int) $tweet['user_id'] ?>" class="font-bold text-slate-900 hover:underline">
-                    TODO: 表示名(display_name)
+                    <?= h($tweet['display_name']) ?>
                 </a>
                 <span class="text-slate-400 text-sm">@<?= h($tweet['account_name']) ?></span>
                 <span class="text-slate-400 text-sm">·</span>
                 <span class="text-slate-400 text-sm">
-                    TODO: 投稿日時(created_at)を「YYYY年MM月DD日」形式
+                    <!-- TODO: 投稿日時(created_at)を「YYYY年MM月DD日」形式 -->
+                    <?= h(date('Y/m/d', strtotime($tweet['created_at']))) ?>
                 </span>
             </div>
             <div class="tweet-message mt-1 text-slate-800 text-sm leading-relaxed" data-id="<?= (int) $tweet['id'] ?>">
-                TODO: メッセージリンク: home/detail.php?id= でGETパラメータ
-                TODO: メッセージ(message)を改行つきで表示
+                <!-- TODO: メッセージリンク: home/detail.php?id= でGETパラメータ -->
+                <!-- TODO: メッセージ(message)を改行つきで表示 -->
+                <?= h(nl2br($tweet['message'])) ?>
             </div>
 
             <?php if (!empty($tweet['image_path'])) : ?>
                 <div class="mt-2">
                     <!-- TODO: src に 画像(image_path)を表示 -->
-                    <img src="" class="rounded-xl max-w-sm max-h-80 object-cover border border-slate-100" alt="">
+                    <img src="<?= h($tweet['image_path']) ?>" class="rounded-xl max-w-sm max-h-80 object-cover border border-slate-100" alt="">
                 </div>
             <?php endif; ?>
 

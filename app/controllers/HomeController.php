@@ -25,6 +25,7 @@ class HomeController extends AuthenticatedController
         View::render('home/index', [
             'auth_user' => $this->authUser,
             'active_tab' => $tab,
+            'tweets' => $tweets,
         ]);
     }
 
