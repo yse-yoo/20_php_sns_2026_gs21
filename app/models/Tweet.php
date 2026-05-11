@@ -56,10 +56,12 @@ class Tweet
         $spaced     = preg_replace('/#(?=\S)/', '# ', $normalized); // "#anime" → "# anime"
 
         // TODO: WHERE で LIKE 検索: 
-        $where = "";
-        // $where  = '(tweets.message LIKE :keyword OR tweets.message LIKE :keyword_spaced)';
+        $where  = '(tweets.message LIKE :keyword OR tweets.message LIKE :keyword_spaced)';
 
-        $params = [];
+        $params = [
+            'keyword' => "%{$normalized}%",
+            'keyword_spaced' => "%{$spaced}%",
+        ];
         // TODO: 検索パラメータ: 
         // 'keyword' => "%{$normalized}%",
         // 'keyword_spaced' => "%{$spaced}%",
