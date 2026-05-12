@@ -11,7 +11,10 @@
         <?php if (empty($users)) : ?>
             <p class="p-8 text-center text-slate-400 text-sm">フォロー中のユーザーはいません</p>
         <?php else : ?>
-            TODO: フォロー中のユーザー表示: foreach() で $users を繰り返し表示
+            <!-- TODO: フォロー中のユーザー表示: foreach() で $users を繰り返し表示 -->
+            <?php foreach ($users as $follow_user) : ?>
+                <?php include COMPONENT_DIR . 'follow_user_item.php' ?>
+            <?php endforeach; ?>
         <?php endif; ?>
     </main>
 
