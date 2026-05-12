@@ -19,13 +19,13 @@ function heartSvg(filled) {
 }
 
 function initTweetMessages(container) {
-    container.querySelectorAll('.tweet-message').forEach((el) => {
-        el.addEventListener('click', (e) => {
-            if (e.target.tagName.toLowerCase() !== 'a') {
-                window.location.href = `home/detail.php?id=${el.dataset.id}`;
-            }
-        });
-    });
+    // container.querySelectorAll('.tweet-message').forEach((el) => {
+    //     el.addEventListener('click', (e) => {
+    //         if (e.target.tagName.toLowerCase() !== 'a') {
+    //             window.location.href = `home/detail.php?id=${el.dataset.id}`;
+    //         }
+    //     });
+    // });
 }
 
 function initLikeButtons(container) {
