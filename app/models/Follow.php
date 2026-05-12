@@ -47,7 +47,9 @@ class Follow
             $pdo = Database::getInstance();
             // TODO: follows テーブルにデータを追加：INSERT
             // (follower_id, followee_id)
-            $sql = '';
+            $sql = 'INSERT INTO follows
+                    (follower_id, followee_id) 
+                    VALUES (:follower_id, :followee_id)';
             $stmt = $pdo->prepare($sql);
             return $stmt->execute(['follower_id' => $follower_id, 'followee_id' => $followee_id]);
         } catch (PDOException $e) {
@@ -65,7 +67,9 @@ class Follow
             $pdo = Database::getInstance();
             // TODO: follows テーブルからデータを削除：DELETE
             // follower_id と followee_id が一致するレコードを削除
-            $sql = '';
+            $sql = 'DELETE FROM follows
+                    WHERE follower_id = :follower_id
+                    AND followee_id = :followee_id';
             $stmt = $pdo->prepare($sql);
             return $stmt->execute(['follower_id' => $follower_id, 'followee_id' => $followee_id]);
         } catch (PDOException $e) {
