@@ -251,7 +251,8 @@ class Tweet
         try {
             $pdo = Database::getInstance();
             // TODO: tweets テーブルからユーザIDが一致するレコード数を取得：COUNT
-            $sql = 'SELECT COUNT(0)';
+            $sql = 'SELECT COUNT(*) FROM tweets
+                    WHERE user_id = :user_id';
 
             $stmt = $pdo->prepare($sql);
             $stmt->execute(['user_id' => $user_id]);
